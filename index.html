@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Petrona:ital,wght@0,100..900;1,100..900&family=Prata&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-[#141414] text-white">
+    <!-- Navbar -->
+    <div class="navbar-div bg-gradient-color flex items-center justify-between w-screen p-3 fixed top-0 z-1">
+        <div class="flex gap-12 pl-12">
+            <!-- Netflix Image -->
+            <img src="/img/Netflix-Img.png" alt="Netflix-Image" class="w-23">
+            <!-- Navbar Items -->
+            <ul class="flex gap-6 font-inter">
+                <a href="#"><li class="hover:text-[#b3b3b3] cursor-pointer">Home</li></a>
+                <a href="#"><li class="hover:text-[#b3b3b3] cursor-pointer">TV Shows</li></a>
+                <a href="#"><li class="hover:text-[#b3b3b3] cursor-pointer">Movies</li></a>
+                <a href="#"><li class="hover:text-[#b3b3b3] cursor-pointer">New & Popular</li></a>
+                <a href="#"><li class="hover:text-[#b3b3b3] cursor-pointer">My List</li></a>
+            </ul>
+        </div>
+        <div class="search-div flex items-center gap-5 pr-12">
+            <!-- Navbar Icons -->
+            <i class="fa-solid fa-search cursor-pointer"></i>
+            <i class="fa-solid fa-bell cursor-pointer"></i>
+            <!-- Netflix Profile Image -->
+            <img src="/img/Netflix-Profile-Img.jpg" alt="Profile-Image" class="w-10 rounded-md cursor-pointer">
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="bg-[url(/img/Hero-Section-Img.png)] h-160 bg-no-repeat bg-cover overflow-hidden flex items-start flex-col justify-center px-20">
+        <!-- Hero Section Text Image and Description -->
+        <h1 class="text-4xl mb-[20.04px] font-bold"><img src="/img//Hero-Text.png" alt="Hero-Text" class="w-100"></h1>
+        <p class="text-base">A rebellious teenager navigates life at a peculiar boarding school, <br> where she unravels mysteries, confronts supernatural forces, and <br> discovers secrets about her own dark family legacy.</p>
+        <!-- Hero Section Play and Info Button -->
+        <div class="flex mt-[23.04px]">
+            <button class="flex items-center justify-center bg-white text-black font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(255,255,255,0.75)] py-[9.216px] px-[2rem] mr-[11.52px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" role="img" viewBox="0 0 24 24" width="24" height="24" data-icon="PlayStandard" aria-hidden="true">
+                    <path fill="currentColor" d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"></path>
+                </svg>
+                <span class="text-lg font-[600] font-inter">Play</span>
+            </button>
+            <button class="flex items-center justify-center bg-[rgba(109,109,110,0.7)] text-white font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(109,109,110,0.4)] py-[9.216px] px-[2rem]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" role="img" viewBox="0 0 24 24" width="24" height="24" data-icon="CircleIStandard" aria-hidden="true">
+                    <path fill="currentColor" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12ZM13 10V18H11V10H13ZM12 8.5C12.8284 8.5 13.5 7.82843 13.5 7C13.5 6.17157 12.8284 5.5 12 5.5C11.1716 5.5 10.5 6.17157 10.5 7C10.5 7.82843 11.1716 8.5 12 8.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+                <span class="text-lg font-[500] font-inter">More Info</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Movie Section -->
+
+    <!-- Movie Heading 1 -->
+    <h2 class="movie-heading text-white text-2xl font-bold px-20 py-3 font-inter mt-8">Today's Top Picks for You</h2>
+    <!-- Movie Content 1 -->
+    <div class="main">
+    <div class="remove-scroll scroller flex overflow-x-auto pl-17 scrollbar-hide">
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Sikander-Movie-Img.webp" alt="Movie-Image" value="Sikander" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Retro-Movie-Img.webp" alt="Movie-Image" value="Retro" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-emerald-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Diplomat-Movie-Img.webp" alt="Movie-Image" value="The Diplomat" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-teal-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Royals-Movie-Img.jpg" alt="Movie-Image" value="The Royals" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Hit-Movie-Img.webp" alt="Movie-Image" value="Hit" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-red-400/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Kabir-Singh-Movie-Img.webp" alt="Movie-Image" value="Kabir Singh" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Fifty-Shades-Of-Grey-Movie-Img.webp" alt="Movie-Image" value="Fifty Shades of Grey" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Shehzada-Movie-Img.webp" alt="Movie-Image" value="Shehzada" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Pushpa-Movie-Img.webp" alt="Movie-Image" value="Pushpa-2" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-500/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-1-Img/Kalki-Movie-Img.webp" alt="Movie-Image" value="Kalki" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-neutral-500/50">
+        </div>
+    </div>
+
+    <!-- Movie Heading 2 -->
+    <h2 class="movie-heading text-white text-2xl font-bold px-20 py-3 font-inter mt-8">Bollywood Superstars</h2>
+    <!-- Movie Content 2 -->
+    <div class="remove-scroll scroller flex overflow-x-auto pl-17 scrollbar-hide">
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Jewel-Thief-Movie-Img.jpg" alt="Movie-Image" value="Jewel Thief" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-red-500/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Jawan-Movie-Img.webp" alt="Movie-Image" value="Jawan" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-lime-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Shaitaan-Movie-Img.webp" alt="Movie-Image" value="Shaitaan" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-700/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Animal-Movie-Img.webp" alt="Movie-Image" value="Animal" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-lime-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Yeh-Jawaani-Hai-Deewani-Movie-Img.webp" value="Yeh Jawaani Hai Deewani" alt="Movie-Image" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Bhool-Bhulaiyaa-Movie-Img.webp" alt="Movie-Image" value="Bhool Bhulaiyaa" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Om-Shanti-Om-Movie-Img.webp" alt="Movie-Image" value="Om Shanti Om" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-green-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/PK-Movie-Img.webp" alt="Movie-Image" value="PK" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Happy-New-Year-Movie-Img.webp" alt="Movie-Image" value="Happy New Year" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-sky-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-2-Img/Kick-Movie-Img.webp" alt="Movie-Image" value="Kick" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-neutral-300/50">
+        </div>
+    </div>
+
+    <!-- Movie Heading 3 -->
+    <h2 class="movie-heading text-white text-2xl font-bold px-20 py-3 font-inter mt-8">Critically Acclaimed TV Shows</h2>
+    <!-- Movie Content 3 -->
+    <div class="remove-scroll scroller flex overflow-x-auto pl-17 scrollbar-hide">
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Money-Heist-Movie-Img.jpg" alt="Movie-Image" value="Money Heist" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Squid-Game-Movie-Img.jpg" alt="Movie-Image" value="Squid Game" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-lime-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Stranger-Things-Movie-Img.jpg" alt="Movie-Image" value="Stranger Things" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-lime-700/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Lucifer-Movie-Img.jpg" alt="Movie-Image" value="Lucifier" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-teal-900/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Friends-Movie-Img.webp" alt="Movie-Image" value="Friends" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/When-Life-Gives-You-Tangerines-Movie-Img.jpg" alt="Movie-Image" value="When Life Gives You Tangerines" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/All-Of-Us-Are-Dead-Movie-Img.jpg" alt="Movie-Image" value="All of us are Dead" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-green-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Cobra-Kai-Movie-Img.jpg" alt="Movie-Image" value="Cobra Kai" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-600/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Young-Sheldon-Movie-Img.webp" alt="Movie-Image" value="Young Sheldon" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-stone-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-3-Img/Never-Have-I-Ever-Movie-Img.jpg" alt="Movie-Image" value="Never Have I Ever" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-orange-200/50">
+        </div>
+    </div>
+
+    <!-- Movie Heading 4 -->
+    <h2 class="movie-heading text-white text-2xl font-bold px-20 py-3 font-inter mt-8">International TV Shows</h2>
+    <!-- Movie Content 4 -->
+    <div class="remove-scroll scroller flex overflow-x-auto pl-17 scrollbar-hide">
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/True-Beauty-Movie-Img.webp" alt="Movie-Image" value="True Beauty" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-pink-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/King-The-Land-Movie-Img.jpg" alt="Movie-Image" value="King the Land" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-gray-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Alice-Movie-Img.jpg" alt="Movie-Image" value="Alice" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-700/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/My-Demon-Movie-Img.jpg" alt="Movie-Image" value="My Demon" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-teal-900/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/The-First-Frost-Movie-Img.webp" alt="Movie-Image" value="The First Frost" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Hidden-Love-Movie-Img.webp" alt="Movie-Image" value="Hidden Love" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-emerald-400/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Vincenzo-Movie-Img.jpg" alt="Movie-Image" value="Vincenzo" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-gray-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Queen-Of-Tears-Movie-Img.jpg" alt="Movie-Image" value="Queen of Tears" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-stone-50/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Business-Proposal-Movie-Img.jpg" alt="Movie-Image" value="Business Proposal" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-stone-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-4-Img/Weak-Hero-Movie-Img.jpg" alt="Movie-Image" value="Weak Hero" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-cyan-300/50">
+        </div>
+    </div>
+
+    <!-- Movie Heading 5 -->
+    <h2 class="movie-heading text-white text-2xl font-bold px-20 py-3 font-inter mt-8">Animation</h2>
+    <!-- Movie Content 5 -->
+    <div class="remove-scroll scroller flex overflow-x-auto pl-17 scrollbar-hide">
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Kung-Fu-Panda-Movie-Img.jpg" alt="Movie-Image" value="Kung Fu Panda" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-sky-300/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Grizzy-Movie-Img.webp" alt="Movie-Image" value="Grizzy" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-gray-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Jurassic-World-Movie-Img.jpg" alt="Movie-Image" value="Jurassic World" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-cyan-700/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Jurassic-World-Chaos-Theory-Movie-Img.jpg" alt="Movie-Image" value="Jurassic World Chaos Theory" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-cyan-200/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Ben-10-Movie-Img.webp" alt="Movie-Image" value="Ben 10" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-amber-100/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Scooby-Doo-Movie-Img.webp" alt="Movie-Image" value="Scooby Doo" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-sky-500/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Masha-And-The-Bear-Movie-Img.webp" alt="Movie-Image" value="Masha and the Bear" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-yellow-800/50">
+        </div>
+
+        <div class="movie-card shrink-0 text-white w-80 px-3 py-2 h-46 rounded-md cursor-pointer">
+            <img src="/img/Movie-Row-5-Img/Tom-And-Jerry-Movie-Img.webp" alt="Movie-Image" value="Tom and Jerry" class="w-full h-full object-contain transition duration-300 ease-in-out hover:scale-105 hover:brightness-101 hover:shadow-lg hover:shadow-stone-50/50">
+        </div>
+    </div>
+    </div>
+
+    <!-- Footer Section -->
+    <!-- <div class="bg-gradient-color-scroll mt-8 flex items-center justify-between px-20"> -->
+    <div class="bg-gradient-color-scroll mt-8">
+        <!-- Footer Icons Used Here -->
+        <div class="px-20 py-6">
+            <i class="fa-brands fa-facebook-f cursor-pointer text-lg"></i>
+            <i class="fa-brands fa-instagram ml-5 cursor-pointer text-lg"></i>
+            <i class="fa-brands fa-twitter ml-5 cursor-pointer text-lg"></i>
+            <i class="fa-brands fa-github ml-5 cursor-pointer text-lg"></i>
+        </div>
+
+        <!-- Footer Headings -->
+        <div class="flex items-center justify-between px-20">
+            <!-- Heading 1 -->
+            <ul>
+                <li><span class="cursor-pointer">Audio Description</span></li>
+                <li><span class="cursor-pointer">Investor Relations</span></li>
+                <li><span class="cursor-pointer">Legal Notices</span></li>
+            </ul>
+
+            <!-- Heading 2 -->
+            <ul>
+                <li><span class="cursor-pointer">Help Center</span></li>
+                <li><span class="cursor-pointer">Jobs</span></li>
+                <li><span class="cursor-pointer">Cookie Preferences</span></li>
+            </ul>
+
+            <!-- Heading 3 -->
+            <ul>
+                <li><span class="cursor-pointer">Gift Cards</span></li>
+                <li><span class="cursor-pointer">Terms of Use</span></li>
+                <li><span class="cursor-pointer">Corporate Information</span></li>
+            </ul>
+
+            <!-- Heading 4 -->
+            <ul>
+                <li><span class="cursor-pointer">Media Center</span></li>
+                <li><span class="cursor-pointer">Privacy</span></li>
+                <li><span class="cursor-pointer">Contact Us</span></li>
+            </ul>
+        </div>
+
+        <div class="px-20 py-6 cursor-pointer">
+            <p class="border-2 border-white w-fit p-2 hover:bg-white hover:border-black hover:text-black">Service Code</p>
+        </div>
+    </div>
+
+    <!-- Footer Last Label Line -->
+     <p class="text-center text-white text-sm mt-6">
+        © <span id="year"></span> All rights reserved.
+    </p>
+
+    <!-- for best 10 show  -->
+        <!-- <svg id="rank-1" width="100%" height="100%" viewBox="-20 0 70 154" class="svg-icon svg-icon-rank-1 top-10-rank">
+            <path stroke="#595959" stroke-width="4" d="M35.377 152H72V2.538L2 19.362v30.341l33.377-8.459V152z"></path>
+        </svg> -->
+
+    <!-- Javascript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
