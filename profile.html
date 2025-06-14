@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-[#141414] text-white scrollbar-hide w-full scroll-smooth">
+    <!-- Profile Navbar -->
+    <div class="bg-gradient-color flex items-center justify-between w-full p-3 fixed top-0 z-1">
+        <div class="flex items-center justify-center gap-4 pl-2">
+            <!-- Netflix Image -->
+            <img src="/img/Netflix-Img.png" alt="Netflix-Image" class="netflix-img-link w-23 lg:w-25 xl:w-28 cursor-pointer">
+        </div>
+        <div class="flex items-center justify-center pr-2">
+            <!-- Netflix Profile Image -->
+            <img src="/img/Netflix-Profile-Img.jpg" alt="Profile-Image" class="profile-img-link w-9 lg:w-10 xl:w-12 rounded-md cursor-pointer">
+        </div>
+    </div>
+
+    <!-- Profile Image and Personal Information Text -->
+    <div class="flex items-center mt-18 lg:mt-21 xl:mt-23 ml-5">
+        <img src="/img/Netflix-Profile-Img.jpg" alt="Profile-Image" class="w-24 lg:w-28 xl:w-30 rounded-md">
+        <div class="w-fit font-inter mb-1.5 ml-5">
+            <span class="text-xl md:text-3xl lg:text-4xl font-bold">Jashan Tandon</span><br>
+            <span class="text-xs md:text-sm lg:text-lg xl:text-xl text-[#808080]">jashantandon18@gmail.com</span><br>
+            <div class="mt-2 flex items-center">
+                <span class="py-0.5 px-1.5 text-sm bg-red-600 mr-3 md:mr-6 text-xs md:text-sm lg:text-lg xl:text-xl">Premium</span>
+                <span class="text-xs md:text-sm lg:text-lg xl:text-xl text-[#808080]">4K + HDR</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Account Settings Heading -->
+    <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold block mt-7 lg:mt-9 ml-5">Account Settings</span>
+    
+    <!-- Profile Items for Small and Medium Screen -->
+    <div class="lg:hidden">
+        <div class="flex flex-col mt-4 ml-5">
+            <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm md:text-lg">Membership & Billing</span>
+                <span class="text-xs mr-5 border-1 border-[#808080] px-2 py-1 md:px-3 md:py-1.5 rounded-md text-[#808080] cursor-pointer hover:text-white" onclick="window.location.href = 'profile.html'">Change Plan</span>
+            </div>
+            <span class="mt-4 text-xs md:text-sm text-[#808080]">Premium Plan - 199/month</span>
+            <span class="profile-date-update text-xs md:text-sm text-[#808080]"></span>
+        </div>
+
+        <div class="flex flex-col mt-5 ml-5">
+            <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm md:text-lg">Profile and Parental control</span>
+                <span class="text-xs mr-5 border-1 border-[#808080] px-2 py-1 md:px-3 md:py-1.5 rounded-md text-[#808080] cursor-pointer hover:text-white" onclick="window.location.href = 'profile.html'">Manage</span>
+            </div>
+            <span class="mt-4 text-xs md:text-sm text-[#808080]">Profile - 1</span>
+            <span class="text-xs md:text-sm text-[#808080]">All Maturity Rating</span>
+        </div>
+
+        <div class="flex flex-col mt-5 ml-5">
+            <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm md:text-lg">Privacy & Security</span>
+                <span class="text-xs mr-5 border-1 border-[#808080] px-2 py-1 md:px-3 md:py-1.5 rounded-md text-[#808080] cursor-pointer hover:text-white" onclick="window.location.href = 'profile.html'">Change Password</span>
+            </div>
+            <span class="mt-4 text-xs md:text-sm text-[#808080]">Password: **********</span>
+            <span class="text-xs md:text-sm text-[#808080]">Two Factor Authentication</span>
+        </div>
+    </div>
+
+    <!-- Profile Items for Large Screen -->
+    <div class="hidden lg:flex items-start">
+        <div class="flex flex-col mt-5 ml-5">
+            <div class="flex items-center justify-center">
+                <span class="font-semibold text-xl xl:text-2xl">Membership & Billing</span>
+                <span class="text-sm xl:text-lg mr-5 border-1 border-[#808080] px-1.5 py-1.5 xl:px-4 xl:py-1.5 2xl:py-1 rounded-md text-[#808080] cursor-pointer hover:text-white ml-3 xl:ml-16.5 2xl:ml-22.5" onclick="window.location.href = 'profile.html'">Change Plan</span>
+            </div>
+            <span class="mt-4 text-base xl:text-lg text-[#808080]">Premium Plan - 199/month</span>
+            <span class="profile-date-update xl:text-lg te-update text-base text-[#808080]"></span>
+        </div>
+
+        <div class="flex flex-col mt-5 ml-3 2xl:ml-6">
+            <div class="flex items-center justify-center">
+                <span class="font-semibold text-xl xl:text-2xl">Profile and Parental control</span>
+                <span class="text-sm xl:text-lg mr-5 border-1 border-[#808080] px-1.5 py-1.5 xl:px-4 xl:py-1.5 2xl:py-1 rounded-md text-[#808080] cursor-pointer hover:text-white ml-3 xl:ml-16.5 2xl:ml-22.5" onclick="window.location.href = 'profile.html'">Manage</span>
+            </div>
+            <span class="mt-4 text-base xl:text-lg text-[#808080]">Profile - 1</span>
+            <span class="text-base xl:text-lg text-[#808080]">All Maturity Rating</span>
+        </div>
+
+        <div class="flex flex-col mt-5 ml-3 2xl:ml-6">
+            <div class="flex items-center justify-center">
+                <span class="font-semibold text-xl xl:text-2xl">Privacy & Security</span>
+                <span class="text-sm xl:text-lg mr-5 border-1 border-[#808080] px-1.5 py-1.5 xl:px-4 xl:py-1.5 2xl:py-1 rounded-md text-[#808080] cursor-pointer hover:text-white ml-3 xl:ml-16.5 2xl:ml-22.5" onclick="window.location.href = 'profile.html'">Change Password</span>
+            </div>
+            <span class="mt-4 text-base xl:text-lg text-[#808080]">Password: **********</span>
+            <span class="text-base xl:text-lg text-[#808080]">Two Factor Authentication</span>
+        </div>
+    </div>
+
+    <script src="profilescript.js"></script>
+</body>
+</html>

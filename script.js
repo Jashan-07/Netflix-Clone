@@ -1,48 +1,77 @@
-// const container = document.querySelector('.scroller');
+// Page Reload.
+window.addEventListener("beforeunload", () => {
+    window.scrollTo(0, 0);
+})
 
-// // Clone all children and append clones to container.
-// container.innerHTML += container.innerHTML;
+// Page load to Top when click Profile Netflix Image Link.
+window.addEventListener("load", () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+})
 
-// // When scroll reaches halfway, reset scrollLeft back by half scrollWidth.
-// container.addEventListener('scroll', () => 
-// {
-//     if (container.scrollLeft >= container.scrollWidth / 2) 
-//     {
+// Add Search Input Box for Medium Screen.
+let search = document.querySelector(".fa-search");
+let searchdiv = document.querySelector(".search-div");
 
-//         console.log(container.scrollLeft, container.scrollWidth);
-//         container.scrollLeft -= container.scrollWidth / 2;
-//     }
-// });
+let inputsearchmd = document.createElement("input");
+inputsearchmd.type = "text"; 
+inputsearchmd.className = "border-1 border-black rounded-lg text-white bg-black w-22 md:w-33 lg:w-50 xl:w-60 placeholder:text-white placeholder:font-inter placeholder:text-sm xl:placeholder:text-base px-3 py-0.5 xl:py-1 focus:outline-none text-base";
 
-// ADD NAVBAR BACKGROUND-COLOR DURING SCROLL.
+// Handle Placeholder for Small and Medium Screen.
+function updatePlaceholder()
+{
+    if(window.innerWidth <= 426)
+    {
+        inputsearchmd.placeholder = "Search...";
+    }
+    else
+    {
+        inputsearchmd.placeholder = "Search Movies..."
+    }
+}
+
+updatePlaceholder();
+window.addEventListener("resize", updatePlaceholder);
+
+// Add Navbar Background-color during scroll.
 let navbardiv = document.querySelector(".navbar-div");
 
 window.addEventListener("scroll", () => {
-
     if(window.scrollY === 0)
     {
         navbardiv.classList.remove("bg-gradient-color-scroll");
+        inputsearchmd.classList.remove("border-white", "bg-white", "placeholder:text-black", "text-black");
+        inputsearchmd.classList.add("border-black", "bg-black", "placeholder:text-white", "text-white");
     }
     else
     {
         navbardiv.classList.add("bg-gradient-color-scroll");
+        inputsearchmd.classList.add("border-white", "bg-white", "placeholder:text-black", "text-black");
+        inputsearchmd.classList.remove("border-black", "bg-black", "placeholder:text-white", "text-white");
     }
 })
 
-// ADD SEARCH INPUT BOX.
-let search = document.querySelector(".fa-search");
-let searchdiv = document.querySelector(".search-div");
+// Handle Input Search for Small and Medium Screen.
+function HandleInputSearch() 
+{
+    if(window.innerWidth < 425)
+    {
+        inputsearchmd.classList.add("hidden");
+    }
+    else
+    {
+        inputsearchmd.classList.remove("hidden");
+    }
+}
 
-let inputsearch = document.createElement("input");
-inputsearch.type = "text";
-inputsearch.className = "search-input border-2 border-black rounded-lg text-white bg-black w-50 placeholder:text-white px-3 focus:outline-none text-base";
-inputsearch.placeholder = "Search Movie...";
+HandleInputSearch();
+window.addEventListener("resize", HandleInputSearch);
 
+// Add Search Input Box.
 search.addEventListener("click", () => {
     let existinginput = searchdiv.querySelector("input");
     if(!existinginput)
     {
-        searchdiv.prepend(inputsearch);
+        searchdiv.prepend(inputsearchmd);
         localStorage.setItem("inputbox", "true");
     }
     else
@@ -54,13 +83,13 @@ search.addEventListener("click", () => {
 
 // Store inputsearch in localstorage.
 window.addEventListener('DOMContentLoaded', () => {
+    let existinginput = searchdiv.querySelector("input");
     if(localStorage.getItem("inputbox") === "true")
     {
-        searchdiv.prepend(inputsearch);
+        searchdiv.prepend(inputsearchmd);
     }
     else
     {
-        let existinginput = searchdiv.querySelector("input");
         if(existinginput)
         {
             existinginput.remove();
@@ -69,65 +98,312 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 // Input Box Search Cards.
-let moviecard = document.querySelectorAll(".movie-card");
-let movieheading = document.querySelectorAll(".movie-heading");
+window.addEventListener('DOMContentLoaded', () => {
+    let moviecard = document.querySelectorAll(".movie-card");
+    let movieheading = document.querySelectorAll(".movie-heading");
+    let searchheading = document.createElement("h2");
+    searchheading.className = "text-white text-xl md:text-2xl font-bold px-3 py-3 font-inter mt-8";
+    searchheading.innerText = "Best Searches";
+    let main = document.querySelector(".main");
+    let removescroll = document.querySelectorAll(".remove-scroll");
 
-let searchheading = document.createElement("h2");
-searchheading.className = "text-white text-2xl font-bold px-20 py-3 font-inter mt-8";
-searchheading.innerText = "Best Searches";
-let maindiv = document.querySelector(".main-div");
-let main = document.querySelector(".main");
-let removescroll = document.querySelectorAll(".remove-scroll");
+    let heroimage = document.querySelector(".Hero-Img");
+    let movienotfound = document.createElement("div");
+    movienotfound.className = "font-inter py-25 px-10 text-sm md:text-base md:px-38 md:py-40 lg:text-lg lg:px-65 lg:py-55 xl:text-xl xl:px-110";
+    movienotfound.innerHTML = `
+        <p class="pb-2">Your search for "" did not have any matches.</p>
+        <p class="pb-2">Suggestions:</p>
+        <ul class="list-disc list-inside pl-6">
+            <li>Try different keywords</li>
+            <li>Looking for a movie or TV show?</li>
+            <li>Try using a movie, TV show title, an actor or director</li>
+            <li>Try a genre, like comedy, romance, sports, or drama</li>
+        </ul>
+    `;
 
-inputsearch.addEventListener("input", () => {
-    let inputsearchvalue = inputsearch.value.toLowerCase().replace(/\s+/g, "");;
-    let searchheadingvisible = false;
-    
-    moviecard.forEach((card) => {
-        let image = card.querySelector("img");
-        let imagevalue = image.getAttribute("value").toLowerCase().replace(/\s+/g, "");
+    inputsearchmd.addEventListener("input", () => {
+        let inputsearchvalue = inputsearchmd.value.toLowerCase().replace(/\s+/g, "");
+        let searchheadingvisible = false;
+        let matchFound = false;
         
-        if(imagevalue.includes(inputsearchvalue))
+        moviecard.forEach((card) => {
+            let image = card.querySelector("img");
+            let imagevalue = image.getAttribute("data-title").toLowerCase().replace(/\s+/g, "");
+            
+            if(imagevalue.includes(inputsearchvalue))
+            {
+                movieheading.forEach((movie) => {
+                    movie.style.display = "none";
+                });
+                card.style.display = "block";
+                searchheadingvisible = true;
+                matchFound = true;
+                movienotfound.classList.add("hidden");
+                heroimage.classList.remove("hidden","md:hidden");
+                // main.classList.add("pl-6");
+            }
+            else
+            {
+                card.style.display = "none";
+            }
+        })
+
+        if(searchheadingvisible == true)
         {
-            movieheading.forEach((movie) => {
-                movie.style.display = "none";
+            removescroll.forEach((rmscroll) => {
+                rmscroll.classList.remove("overflow-x-auto");
             });
-            card.style.display = "block";
-            searchheadingvisible = true;
+            main.before(searchheading);
+            main.classList.add("flex", "overflow-x-auto", "scrollbar-hide");
         }
         else
         {
-            card.style.display = "none";
+            searchheading.remove();
+        }
+
+        if (inputsearchvalue === "") {
+            moviecard.forEach(card => {
+                card.style.display = "block";
+            });
+            movieheading.forEach(movie => {
+                movie.style.display = "block";
+            });
+            removescroll.forEach(rmscroll => {
+                rmscroll.classList.add("overflow-x-auto");
+            });
+            main.classList.remove("flex", "overflow-x-auto", "scrollbar-hide");
+            searchheading.remove();
+            heroimage.classList.remove("hidden","md:hidden");
+            // main.classList.add("pl-6");
+            movienotfound.classList.add("hidden");
+        }
+        
+        if(!matchFound)
+        {
+            moviecard.forEach(card => {
+                card.style.display = "none";
+            });
+            movieheading.forEach(movie => {
+                movie.style.display = "none";
+            });
+            searchheading.remove();
+            heroimage.classList.add("hidden","md:hidden");
+            // main.classList.remove("pl-6");
+            movienotfound.classList.remove("hidden");
+            main.prepend(movienotfound);
+            movienotfound.innerHTML = `
+                <p class="pb-2">Your search for <span class='font-bold'>"${inputsearchvalue}"</span> did not have any matches.</p>
+                <p class="pb-2">Suggestions:</p>
+                <ul class="list-disc list-inside pl-6">
+                    <li>Try different keywords</li>
+                    <li>Looking for a movie or TV show?</li>
+                    <li>Try using a movie, TV show title, an actor or director</li>
+                    <li>Try a genre, like comedy, romance, sports, or drama</li>
+                </ul>
+            `;
         }
     })
 
-    if(searchheadingvisible == true)
+    // Handle Search Visibility and MovieNotFound According to Pixels.
+    function HandleSearchIconVisibility() {
+        let searchvisibility = document.querySelector(".search-visibility");
+        let screenWidth = window.innerWidth;
+        let inputsearchvalue = inputsearchmd.value.toLowerCase().replace(/\s+/g, "");
+
+        if (screenWidth < 425) 
+        {
+            searchvisibility.style.display = "none";
+            moviecard.forEach(card => card.style.display = "block");
+            movieheading.forEach(movie => movie.style.display = "block");
+            removescroll.forEach(r => r.classList.add("overflow-x-auto"));
+            main.classList.remove("flex", "overflow-x-auto", "scrollbar-hide");
+            searchheading.remove();
+            heroimage.classList.remove("hidden", "md:hidden");
+            // main.classList.add("pl-6");
+            movienotfound.classList.add("hidden");
+        } 
+        else 
+        {
+            searchvisibility.style.display = "block";
+            if (inputsearchvalue !== "") 
+            {
+                moviecard.forEach(card => card.style.display = "none");
+                movieheading.forEach(movie => movie.style.display = "none");
+                searchheading.remove();
+                heroimage.classList.add("hidden", "md:hidden");
+                // main.classList.remove("pl-6");
+                movienotfound.classList.remove("hidden");
+            }
+        }
+    }
+
+    HandleSearchIconVisibility();
+    window.addEventListener("resize", HandleSearchIconVisibility);
+})
+
+// Browse DropDown Toggle Button.
+let browsedropdownicon = document.querySelector(".browse-dropdown-icon");
+let browsedropdowndiv = document.querySelector(".browse-dropdown-div");
+let browsedropdownitems = document.createElement("i");
+browsedropdownitems.className = "fa-solid fa-caret-up text-xl";
+browsedropdownitems.innerHTML = `
+    <div class="bg-[rgba(19,13,10,0.85)] px-20 py-5 fixed top-[65px] left-[25px] border-t-2 border-t-white">
+        <ul class="font-inter flex items-center justify-center flex-col gap-y-5 text-base font-normal text-[#B3B3B3]">
+            <li class="Browse-Home cursor-pointer">Home</li>
+            <li class="Browse-TV cursor-pointer">TV Shows</li>
+            <li class="Browse-Movies cursor-pointer">Movies</li>
+            <li class="Browse-New cursor-pointer">New & Popular</li>
+            <li class="Browse-List cursor-pointer">My List</li>
+        </ul>
+    </div>  
+`;
+
+// Notification DropDown Toggle Button.
+let notificationvisibility = document.querySelector(".notification-visibility");
+let notificationdiv = document.querySelector(".notification-div");
+let notificationicon = document.createElement("i");
+notificationicon.className = "fa-solid fa-caret-up xl:text-lg";
+let notificationinnerdiv = document.createElement("div");
+notificationinnerdiv.className = "fixed bg-[rgba(19,13,10,0.85)] top-[65px] xl:top-[75px] left-notificationdiv-425 left-[100px] md:left-[490px] lg:left-[740px] xl:left-[1070px] 2xl:left-[1165px] h-20 xl:h-30 w-55 xl:w-75 flex items-center justify-center border-t-2 border-t-white";
+notificationinnerdiv.innerHTML = `<span class="text-[#B3B3B3] text-sm xl:text-lg">No Notification Found</span>`;
+
+// Notification.
+notificationvisibility.addEventListener("click", () => {
+    if(!notificationdiv.contains(notificationicon))
     {
-        removescroll.forEach((rmscroll) => {
-            rmscroll.classList.remove("overflow-x-auto", "pl-17");
-        });
-        main.before(searchheading);
-        main.classList.add("flex", "flex-nowrap", "pl-17", "overflow-x-auto", "py-3", "scrollbar-hide");
+        notificationdiv.prepend(notificationicon);
+        notificationdiv.append(notificationinnerdiv);
+        browsedropdownitems.remove();
     }
     else
     {
-        searchheading.remove();
-    }
-
-    if (inputsearchvalue === "") {
-        moviecard.forEach(card => {
-            card.style.display = "block";
-        });
-        movieheading.forEach(movie => {
-            movie.style.display = "block";
-        });
-        removescroll.forEach(rmscroll => {
-            rmscroll.classList.add("overflow-x-auto", "pl-17");
-        });
-        main.classList.remove("flex", "flex-nowrap", "pl-17", "overflow-x-auto", "py-3", "scrollbar-hide");
-        searchheading.remove();
+        notificationicon.remove();
+        notificationinnerdiv.remove();
     }
 })
 
-// Footer Last Label Line.
-document.getElementById("year").textContent = new Date().getFullYear();
+// Browse.
+browsedropdownicon.addEventListener("click", () => {
+    if(!browsedropdowndiv.contains(browsedropdownitems))
+    {
+        browsedropdowndiv.prepend(browsedropdownitems);
+        notificationicon.remove();
+        notificationinnerdiv.remove();
+    }
+    else
+    {
+        browsedropdownitems.remove();
+    }
+})
+
+// Handle Browse Dropdown Visibility According to Pixels.
+function HandleDropdownIconVisibility() 
+{
+    if(window.innerWidth >= 768)
+    {
+        browsedropdownicon.classList.add("hidden");
+        browsedropdowndiv.classList.add("hidden");
+    }
+    else
+    {
+        browsedropdownicon.classList.remove("hidden");
+        browsedropdowndiv.classList.remove("hidden");
+    }
+}
+
+window.addEventListener("DOMContentLoaded", HandleDropdownIconVisibility);
+window.addEventListener("resize", HandleDropdownIconVisibility);
+
+// Browse Navigation.
+let browsehome = browsedropdownitems.querySelector(".Browse-Home");
+let browsetv = browsedropdownitems.querySelector(".Browse-TV");
+let browsemovies = browsedropdownitems.querySelector(".Browse-Movies");
+let browsenew = browsedropdownitems.querySelector(".Browse-New");
+let browselist = browsedropdownitems.querySelector(".Browse-List");
+
+browsehome.addEventListener("click", () => {
+    HandleBrowseItems('Home');
+    // window.location.href();
+})
+browsetv.addEventListener("click", () => {
+    HandleBrowseItems('Tv');
+    // window.location.href();
+})
+browsemovies.addEventListener("click", () => {
+    HandleBrowseItems('Movies');
+    // window.location.href();
+})
+browsenew.addEventListener("click", () => {
+    HandleBrowseItems('New');
+    // window.location.href();
+})
+browselist.addEventListener("click", () => {
+    HandleBrowseItems('List');
+})
+
+function HandleBrowseItems(browseitems)
+{
+    ClearBold();
+    if(browseitems === "Home")
+    {
+        browsehome.classList.add("font-bold", "text-[#FFFFFF]");
+        window.scrollTo({ top: 10, behavior: 'smooth' });
+    }
+    if(browseitems === "Tv")
+    {
+        browsetv.classList.add("font-bold", "text-[#FFFFFF]");
+        window.scrollTo({ top: 605, behavior: 'smooth' });
+    }
+    else if(browseitems === "Movies")
+    {
+        browsemovies.classList.add("font-bold", "text-[#FFFFFF]");
+        window.scrollTo({ top: 605, behavior: 'smooth' });
+    }
+    else if(browseitems === "New")
+    {
+        browsenew.classList.add("font-bold", "text-[#FFFFFF]");
+        window.scrollTo({ top: 605, behavior: 'smooth' });
+    }
+    else if(browseitems === "List")
+    {
+        browselist.classList.add("font-bold", "text-[#FFFFFF]");
+        window.scrollTo({ top: 605, behavior: 'smooth' });
+    }
+}
+
+function ClearBold()
+{
+    browsehome.classList.remove("font-bold", "text-[#FFFFFF]");
+    browsetv.classList.remove("font-bold", "text-[#FFFFFF]");
+    browsemovies.classList.remove("font-bold", "text-[#FFFFFF]");
+    browsenew.classList.remove("font-bold", "text-[#FFFFFF]");
+    browselist.classList.remove("font-bold", "text-[#FFFFFF]");
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    HandleBrowseItems("Home");
+})
+
+// Hero Section Scroll use in Play and More Info Buttons.
+let herosection = document.querySelector("#Hero-Section");
+
+let playbtn = document.querySelector(".playbtn");
+playbtn.addEventListener("click", () => {
+    herosection.scrollIntoView({ behavior: "smooth" });
+})
+
+let moreinfobtn = document.querySelector(".more-info-btn");
+moreinfobtn.addEventListener("click", () => {
+    herosection.scrollIntoView({ behavior: "smooth" });
+})
+
+// Footer Year Updation.
+let footeryearupdate = document.querySelector(".footer-year-update");
+let footeryear = new Date().getFullYear();
+footeryearupdate.innerText = `${footeryear}`;
+
+// Profile Image Location Link.
+let profileimglink = document.querySelector(".profile-img-link");
+profileimglink.addEventListener("click", () => {
+    window.location.href = "profile.html";
+})

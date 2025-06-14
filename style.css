@@ -1,17 +1,84 @@
+/* Background-Scroll CSS */
 .bg-gradient-color
 {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .bg-gradient-color-scroll
 {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    background-color: #0f0f0f;
 }
 
-.font-inter {
+/* Font Awesome CSS */
+.font-inter 
+{
   font-family: 'Inter', sans-serif;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
+/* Hide Scrollbar CSS */
+.scrollbar-hide::-webkit-scrollbar 
+{
   display: none;
+}
+
+/* Hero Section CSS */
+@media (max-width: 320px)
+{
+  .w-custom-320
+  {
+    width: 23.7rem;
+  }
+}
+
+@media (min-width: 321px) and  (max-width: 376px) 
+{
+  .hw-custom-375
+  {
+    height: 105vh;
+    width: 101%;
+  }
+}
+
+@media (min-width: 376px) and  (max-width: 426px) 
+{
+  .hw-custom-425
+  {
+    height: 118vh;
+    /* width: 101%; */
+  }
+  .h-custom-search-425
+  {
+    width: 23.2rem;
+  }
+}
+
+/* Movie Section CSS */
+@media (max-width: 320px)
+{
+  .w-custommain-320
+  {
+    width: 380px;
+  }
+}
+
+/* Footer Div CSS */
+@media (max-width: 320px) 
+{
+  .w-footerdiv-320
+  {
+    width: 380px;
+  }
+}
+
+/* Notification Dropdown Div CSS */
+@media (min-width: 376px) and (max-width: 426px)
+{
+  .left-notificationicon-425
+  {
+    left: 342px;
+  }
+  .left-notificationdiv-425
+  {
+    left: 145px;
+  }
 }
