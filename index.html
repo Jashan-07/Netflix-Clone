@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Petrona:ital,wght@0,100..900;1,100..900&family=Prata&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-[#141414] text-white scrollbar-hide w-full scroll-smooth">
+<body class="bg-[#141414] text-white scrollbar-hide w-screen scroll-smooth overflow-x-hidden">
     <!-- Navbar -->
-    <div class="navbar-div bg-gradient-color flex items-center justify-between w-full p-3 fixed top-0 z-1">
+    <div class="navbar-div bg-gradient-color flex items-center justify-between p-3 w-full fixed top-0 z-1">
         <div class="flex items-center justify-center gap-4 pl-2">
             <!-- Netflix Image -->
             <img src="/img/Netflix-Img.png" alt="Netflix-Image" class="w-23 lg:w-25 xl:w-28 cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
@@ -42,11 +42,12 @@
     <div class="browse-dropdown-div fixed top-[45px] left-[150px]"></div>
 
     <!-- Notification Dropdown Div -->
-    <div class="notification-div left-notificationicon-425 fixed top-[50px] xl:top-[60px] left-[297px] md:left-[685px] lg:left-[933px] xl:left-[1340px] 2xl:left-[1435px] z-10"></div>
-    <!-- <div class="notification-div fixed top-[50px] left-[342px]"></div> -->
+    <div class="flex items-center justify-center">
+        <div class="notification-div fixed bottom-5 bg-black/80 text-white px-4 py-2 rounded-lg text-sm hidden z-10">No Notification Found</div>
+    </div>
 
     <!-- Hero Section -->
-    <div class="Hero-Img bg-[url(/img/Hero-Section-Sm-Img.jpg)] w-custom-320 hw-custom-375 hw-custom-425 bg-cover h-160 md:bg-[url(/img/Hero-Section-Md-Img.png)] md:w-full md:h-110 lg:h-130 xl:h-155 md:bg-no-repeat md:flex md:items-start md:flex-col md:justify-center md:px-20">
+    <div class="Hero-Img bg-[url(/img/Hero-Section-Sm-Img.jpg)] bg-cover w-full h-160 bg-center md:bg-[url(/img/Hero-Section-Md-Img.png)] md:w-full md:h-110 lg:h-130 xl:h-155 md:bg-no-repeat md:flex md:items-start md:flex-col md:justify-center md:px-20">
         <!-- Hero Section Text Image and Description -->
         <section id="Hero-Section" class="scroll-mt-30 lg:scroll-mt-35 xl:scroll-mt-40">
             <h1 class="mb-[20.04px] font-bold hidden md:block"><img src="/img/Hero-Text.png" alt="Hero-Text" class="w-55 lg:w-75 xl:w-95"></h1>
@@ -54,14 +55,13 @@
         </section>
         <!-- Hero Section Play and Info Button -->
         <div class="md:flex mt-[23.04px] hidden md:block">
-            <!-- <button class="flex items-center justify-center bg-white text-black font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(255,255,255,0.75)] py-[9.216px] px-[2rem] mr-[11.52px]"> -->
             <button class="playbtn flex items-center justify-center bg-white text-black font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(255,255,255,0.75)] py-[5.216px] px-[1rem] mr-[11.52px] lg:py-[7.216px] lg:px-[1.5rem] xl:py-[10.216px] xl:px-[2rem]">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" role="img" viewBox="0 0 24 24" data-icon="PlayStandard" aria-hidden="true" class="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7">
                     <path fill="currentColor" d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"></path>
                 </svg>
                 <span class="text-base lg:text-lg xl:text-xl font-[600] font-inter">Play</span>
             </button>
-            <!-- <button class="flex items-center justify-center bg-[rgba(109,109,110,0.7)] text-white font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(109,109,110,0.4)] py-[9.216px] px-[2rem]"> -->
+
             <button class="more-info-btn flex items-center justify-center bg-[rgba(109,109,110,0.7)] text-white font-semibold rounded-md gap-2 cursor-pointer transition-all duration-300 hover:bg-[rgba(109,109,110,0.4)] py-[5.216px] px-[1rem] lg:py-[7.216px] lg:px-[1.5rem] xl:py-[10.216px] xl:px-[2rem]">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" role="img" viewBox="0 0 24 24" data-icon="CircleIStandard" aria-hidden="true" class="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7">
                     <path fill="currentColor" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12ZM13 10V18H11V10H13ZM12 8.5C12.8284 8.5 13.5 7.82843 13.5 7C13.5 6.17157 12.8284 5.5 12 5.5C11.1716 5.5 10.5 6.17157 10.5 7C10.5 7.82843 11.1716 8.5 12 8.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
@@ -73,7 +73,7 @@
 
     <!-- Movie Section -->
     <section id="Movies" class="scroll-mt-15">
-        <div class="main w-custommain-320">
+        <div class="main">
             <!-- Movie Not Found in JS -->
             <!-- Movie Heading 1 -->
             <h2 class="movie-heading text-white text-xl md:text-2xl font-bold px-3 py-3 font-inter mt-8">Today's Top Picks for You</h2>
@@ -294,7 +294,7 @@
     </section>
 
     <!-- Footer Section -->
-    <div class="bg-[#141414] mt-8 w-footerdiv-320">
+    <div class="bg-[#141414] mt-8">
         <!-- Footer Icons Used Here -->
         <div class="px-8 md:px-9 py-6">
             <a href="https://www.facebook.com/NetflixIN/" target="_blank"><i class="fa-brands fa-facebook-f cursor-pointer text-xl"></i></a>
@@ -317,7 +317,7 @@
                 <ul>
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Help Center</span></li>
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Jobs</span></li>
-                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Cookie Preferences</span></li>
+                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Cookie Settings</span></li>
                 </ul>
             </div>
 
@@ -326,13 +326,13 @@
                 <ul>
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Gift Cards</span></li>
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Terms of Use</span></li>
-                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Corporate Information</span></li>
+                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Corporate Profile</span></li>
                 </ul>
 
                 <!-- Heading 4 -->
-                <ul class="pr-10">
+                <ul class="pr-3">
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Media Center</span></li>
-                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Privacy</span></li>
+                    <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Privacy Policy</span></li>
                     <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Contact Us</span></li>
                 </ul>
             </div>
@@ -351,20 +351,20 @@
             <ul>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Help Center</span></li>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Jobs</span></li>
-                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Cookie Preferences</span></li>
+                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Cookie Settings</span></li>
             </ul>
 
             <!-- Heading 3 -->
             <ul>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Gift Cards</span></li>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Terms of Use</span></li>
-                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Corporate Information</span></li>
+                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Corporate Profile</span></li>
             </ul>
 
             <!-- Heading 4 -->
             <ul>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Media Center</span></li>
-                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Privacy</span></li>
+                <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer inline-block pt-2 pb-2 hover:underline">Privacy Policy</span></li>
                 <li><span onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="cursor-pointer hover:underline">Contact Us</span></li>
             </ul>
         </div>

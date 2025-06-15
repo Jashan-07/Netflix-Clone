@@ -140,7 +140,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 matchFound = true;
                 movienotfound.classList.add("hidden");
                 heroimage.classList.remove("hidden","md:hidden");
-                // main.classList.add("pl-6");
             }
             else
             {
@@ -174,7 +173,6 @@ window.addEventListener('DOMContentLoaded', () => {
             main.classList.remove("flex", "overflow-x-auto", "scrollbar-hide");
             searchheading.remove();
             heroimage.classList.remove("hidden","md:hidden");
-            // main.classList.add("pl-6");
             movienotfound.classList.add("hidden");
         }
         
@@ -188,7 +186,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
             searchheading.remove();
             heroimage.classList.add("hidden","md:hidden");
-            // main.classList.remove("pl-6");
             movienotfound.classList.remove("hidden");
             main.prepend(movienotfound);
             movienotfound.innerHTML = `
@@ -219,7 +216,6 @@ window.addEventListener('DOMContentLoaded', () => {
             main.classList.remove("flex", "overflow-x-auto", "scrollbar-hide");
             searchheading.remove();
             heroimage.classList.remove("hidden", "md:hidden");
-            // main.classList.add("pl-6");
             movienotfound.classList.add("hidden");
         } 
         else 
@@ -231,7 +227,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 movieheading.forEach(movie => movie.style.display = "none");
                 searchheading.remove();
                 heroimage.classList.add("hidden", "md:hidden");
-                // main.classList.remove("pl-6");
                 movienotfound.classList.remove("hidden");
             }
         }
@@ -258,37 +253,11 @@ browsedropdownitems.innerHTML = `
     </div>  
 `;
 
-// Notification DropDown Toggle Button.
-let notificationvisibility = document.querySelector(".notification-visibility");
-let notificationdiv = document.querySelector(".notification-div");
-let notificationicon = document.createElement("i");
-notificationicon.className = "fa-solid fa-caret-up xl:text-lg";
-let notificationinnerdiv = document.createElement("div");
-notificationinnerdiv.className = "fixed bg-[rgba(19,13,10,0.85)] top-[65px] xl:top-[75px] left-notificationdiv-425 left-[100px] md:left-[490px] lg:left-[740px] xl:left-[1070px] 2xl:left-[1165px] h-20 xl:h-30 w-55 xl:w-75 flex items-center justify-center border-t-2 border-t-white";
-notificationinnerdiv.innerHTML = `<span class="text-[#B3B3B3] text-sm xl:text-lg">No Notification Found</span>`;
-
-// Notification.
-notificationvisibility.addEventListener("click", () => {
-    if(!notificationdiv.contains(notificationicon))
-    {
-        notificationdiv.prepend(notificationicon);
-        notificationdiv.append(notificationinnerdiv);
-        browsedropdownitems.remove();
-    }
-    else
-    {
-        notificationicon.remove();
-        notificationinnerdiv.remove();
-    }
-})
-
 // Browse.
 browsedropdownicon.addEventListener("click", () => {
     if(!browsedropdowndiv.contains(browsedropdownitems))
     {
         browsedropdowndiv.prepend(browsedropdownitems);
-        notificationicon.remove();
-        notificationinnerdiv.remove();
     }
     else
     {
@@ -323,19 +292,15 @@ let browselist = browsedropdownitems.querySelector(".Browse-List");
 
 browsehome.addEventListener("click", () => {
     HandleBrowseItems('Home');
-    // window.location.href();
 })
 browsetv.addEventListener("click", () => {
     HandleBrowseItems('Tv');
-    // window.location.href();
 })
 browsemovies.addEventListener("click", () => {
     HandleBrowseItems('Movies');
-    // window.location.href();
 })
 browsenew.addEventListener("click", () => {
     HandleBrowseItems('New');
-    // window.location.href();
 })
 browselist.addEventListener("click", () => {
     HandleBrowseItems('List');
@@ -406,4 +371,14 @@ footeryearupdate.innerText = `${footeryear}`;
 let profileimglink = document.querySelector(".profile-img-link");
 profileimglink.addEventListener("click", () => {
     window.location.href = "profile.html";
+})
+
+let notificationvisibility = document.querySelector(".notification-visibility");
+let notificationdiv = document.querySelector(".notification-div");
+
+notificationvisibility.addEventListener("click", () => {
+    notificationdiv.classList.remove("hidden");
+    setTimeout(() => {
+        notificationdiv.classList.add("hidden");
+    }, 2000);
 })
